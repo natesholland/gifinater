@@ -19,6 +19,7 @@ function alertTest() {
   var search_string = document.getElementById('search-box').value;
   searchApi(search_string).done(function(result) {
     var num_results = Math.min(10, result.data.length)
+    document.getElementById('result-area').innerHTML = ""
     for (i = 0; i < num_results; i++) {
       document.getElementById('result-area').innerHTML += "<br><img src= \"" + result["data"][i].images.original.url + "\"><br>" + result["data"][i].images.original.url + "<br>";
     }
