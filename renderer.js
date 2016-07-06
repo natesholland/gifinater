@@ -12,13 +12,22 @@ function searchApi (search_string) {
   var result = jquery.ajax({url: search_url});
   return result;
 }
+
 window.searchApi = searchApi;
 
 function alertTest() {
   var search_string = document.getElementById('search-box').value;
   searchApi(search_string).done(function(result) {
-    document.getElementById('result-area').innerHTML = result["data"];
+    document.getElementById('result-area').innerHTML = "<img src= \"" + result["data"][0].images.original.url + "\"><br>" + result["data"][0].images.original.url;
   });
 }
 
 window.alertTest = alertTest;
+
+function alertTestKeyCheck(e) {
+  if (e.keyCode == 13) {
+    alertTest()
+  }
+}
+
+window.alertTestKeyCheck = alertTestKeyCheck;
