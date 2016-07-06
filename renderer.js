@@ -18,7 +18,11 @@ window.searchApi = searchApi;
 function alertTest() {
   var search_string = document.getElementById('search-box').value;
   searchApi(search_string).done(function(result) {
-    document.getElementById('result-area').innerHTML = "<img src= \"" + result["data"][0].images.original.url + "\"><br>" + result["data"][0].images.original.url;
+    var num_results = Math.min(10, result.data.length)
+    for (i = 0; i < num_results; i++) {
+      document.getElementById('result-area').innerHTML += "<br><img src= \"" + result["data"][i].images.original.url + "\"><br>" + result["data"][i].images.original.url + "<br>";
+    }
+
   });
 }
 
