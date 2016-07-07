@@ -3,6 +3,8 @@
 // All of the Node.js APIs are available in this process.
 
 const jquery = require('jquery')
+const {clipboard} = require('electron');
+
 window.jquery = jquery;
 
 function searchApi (search_string) {
@@ -21,7 +23,9 @@ function alertTest() {
     var num_results = Math.min(10, result.data.length)
     document.getElementById('result-area').innerHTML = ""
     for (i = 0; i < num_results; i++) {
-      document.getElementById('result-area').innerHTML += "<br><img src= \"" + result["data"][i].images.original.url + "\"><br>" + result["data"][i].images.original.url + "<br>";
+      var url = result["data"][i].images.original.url
+      document.getElementById('result-area').innerHTML += "<br><img src= \"" + url + "\"><br>" + url
+      + "<span class=\"glyphicon glyphicon-copy\" onclick=copyUrlClipboard(\"" + url + "\")></span><br>";
     }
 
   });
@@ -40,7 +44,9 @@ window.alertTestKeyCheck = alertTestKeyCheck;
 function randomize() {
   randomGif().done(function(result) {
     document.getElementById('result-area').innerHTML = "";
-    document.getElementById('result-area').innerHTML = "<img src= \"" + result["data"].image_url + "\"><br>" + result["data"].image_url;
+    var url = result["data"].image_url
+    document.getElementById('result-area').innerHTML = "<img src= \"" + url + "\"><br>" + url
+    + "<span class=\"glyphicon glyphicon-copy\" onclick=copyUrlClipboard(\"" + url + "\")></span>";
   });
 }
 
@@ -53,3 +59,10 @@ function randomGif() {
 }
 
 window.randomGif = randomGif
+
+function copyUrlClipboard(url) {
+  clipboard.writeText(url);
+
+}
+
+window.copyUrlClipboard = copyUrlClipboard;
