@@ -4,6 +4,7 @@
 
 const jquery = require('jquery')
 const {clipboard} = require('electron');
+let Handlebars = require('handlebars');
 
 window.jquery = jquery;
 
@@ -24,10 +25,8 @@ function alertTest() {
     document.getElementById('result-area').innerHTML = ""
     for (i = 0; i < num_results; i++) {
       var url = result["data"][i].images.original.url
-      document.getElementById('result-area').innerHTML += "<br><img src= \"" + url + "\"><br>" + url
-      + "<span class=\"glyphicon glyphicon-copy\" onclick=copyUrlClipboard(\"" + url + "\")></span><br>";
+      document.getElementById('result-area').innerHTML += Handlebars.templates['image.hbs']({url: url});
     }
-
   });
 }
 
@@ -45,8 +44,7 @@ function randomize() {
   randomGif().done(function(result) {
     document.getElementById('result-area').innerHTML = "";
     var url = result["data"].image_url
-    document.getElementById('result-area').innerHTML = "<img src= \"" + url + "\"><br>" + url
-    + "<span class=\"glyphicon glyphicon-copy\" onclick=copyUrlClipboard(\"" + url + "\")></span>";
+    document.getElementById('result-area').innerHTML = Handlebars.templates['image.hbs']({url: url});
   });
 }
 
