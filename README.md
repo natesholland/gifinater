@@ -18,4 +18,11 @@ npm install && npm start
 ```
 
 
+## To Do
+
+Currently working on a better way to compile the handlebars templates. Right now
+I have to manually run `handlebars templates/*.hbs -f templates.js` and then go
+into the top of `template.js` and add `let Handlebars = require('handlebars');`.
+Obviously I'm not very good with JavaScript.
+
 #### License [MIT](LICENSE.md)
