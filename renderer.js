@@ -36,3 +36,20 @@ function alertTestKeyCheck(e) {
 }
 
 window.alertTestKeyCheck = alertTestKeyCheck;
+
+function randomize() {
+  randomGif().done(function(result) {
+    document.getElementById('result-area').innerHTML = "";
+    document.getElementById('result-area').innerHTML = "<img src= \"" + result["data"].image_url + "\"><br>" + result["data"].image_url;
+  });
+}
+
+window.randomize = randomize;
+
+function randomGif() {
+  var randomEndpoint = "http://api.giphy.com/v1/gifs/random?api_key=dc6zaTOxFJmzC&tag=kitten";
+  var result = jquery.ajax({url: randomEndpoint});
+  return result;
+}
+
+window.randomGif = randomGif
