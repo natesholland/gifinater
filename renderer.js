@@ -25,6 +25,9 @@ function alertTest() {
     document.getElementById('result-area').innerHTML = ""
     for (i = 0; i < num_results; i++) {
       var url = result["data"][i].images.original.url
+      if (i > 0 && i % 3 == 0) {
+        document.getElementById('result-area').innerHTML += "</div><div class=\"row\">"
+      }
       document.getElementById('result-area').innerHTML += Handlebars.templates['image.hbs']({url: url});
     }
   });
