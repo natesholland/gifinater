@@ -19,4 +19,9 @@ npm install && npm start
 
 To compile the handlebars run `npm run build`.
 
+## Extra Notes
+
+This is powered by the [GiphyAPI](https://github.com/Giphy/GiphyAPI) on the backend.
+
+
 #### License [MIT](LICENSE.md)

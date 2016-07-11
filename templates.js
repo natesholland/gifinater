@@ -12,11 +12,4 @@ templates['image.hbs'] = template({"compiler":[7,">= 4.0.0"],"main":function(con
     + alias4(((helper = (helper = helpers.url || (depth0 != null ? depth0.url : depth0)) != null ? helper : alias2),(typeof helper === alias3 ? helper.call(alias1,{"name":"url","hash":{},"data":data}) : helper)))
     + "\")></span>\n</div>\n";
 },"useData":true});
-templates['strong.hbs'] = template({"compiler":[7,">= 4.0.0"],"main":function(container,depth0,helpers,partials,data) {
-    var helper;
-
-  return "<strong>"
-    + container.escapeExpression(((helper = (helper = helpers.strong || (depth0 != null ? depth0.strong : depth0)) != null ? helper : helpers.helperMissing),(typeof helper === "function" ? helper.call(depth0 != null ? depth0 : {},{"name":"strong","hash":{},"data":data}) : helper)))
-    + "</strong>\n";
-},"useData":true});
 })();
