@@ -46,10 +46,12 @@ function doSearch(search_string) {
     document.getElementById('result-area').innerHTML = ""
     for (i = 0; i < num_results; i++) {
       var url = result["data"][i].images.original.url
+      var still_url = result["data"][i].images.original_still.url
       if (i > 0 && i % 3 == 0) {
         document.getElementById('result-area').innerHTML += "</div><div class=\"row\">"
       }
-      document.getElementById('result-area').innerHTML += Handlebars.templates['image.hbs']({url: url});
+      id = Math.random().toString(36).substring(7)
+      document.getElementById('result-area').innerHTML += Handlebars.templates['image.hbs']({url: url, id: id, still_url: still_url});
     }
   });
 }
@@ -68,7 +70,8 @@ function randomize() {
   randomGif().done(function(result) {
     document.getElementById('result-area').innerHTML = "";
     var url = result["data"].image_url
-    document.getElementById('result-area').innerHTML = Handlebars.templates['image.hbs']({url: url});
+    id = Math.random().toString(36).substring(7)
+    document.getElementById('result-area').innerHTML = Handlebars.templates['image.hbs']({url: url, id: id, still_url: url});
   });
 }
 
@@ -88,3 +91,9 @@ function copyUrlClipboard(url) {
 }
 
 window.copyUrlClipboard = copyUrlClipboard;
+
+function onHoverShowGif(element_id, url) {
+  jquery(document.getElementById(element_id)).attr('src', url)
+}
+
+window.onHoverShowGif = onHoverShowGif;
