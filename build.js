@@ -5,13 +5,13 @@ const build = exec("handlebars templates/*.hbs -f templates.js && echo \"let Han
 
 
 build.stdout.on('data', function(data) {
-  console.log(`stdout: ${data}`);
+  console.log("stdout: " + data);
 });
 
 build.stderr.on('data', function(data) {
-  console.log(`stderr: ${data}`);
+  console.log("stderr: " + data);
 });
 
 build.on('close', function(code) {
-  console.log(`child process exited with code ${code}`);
+  console.log("child process exited with code " + code);
 });
