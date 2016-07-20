@@ -11,14 +11,13 @@ var remote = require('electron').remote
 var arguments = remote.getGlobal('sharedObject').prop1;
 
 function setUpFromArgs(arguments){
-  if (arguments.length > 0) {
-    // remove the first two automatic arguments
+  arguments.shift()
+  if (arguments[0] == '.') {
     arguments.shift()
-    arguments.shift()
-    search_string = arguments.join(' ')
-    document.getElementById('search-box').value=search_string
-    doSearch(search_string)
   }
+  search_string = arguments.join(' ')
+  document.getElementById('search-box').value=search_string
+  doSearch(search_string)
 }
 
 setUpFromArgs(arguments)
