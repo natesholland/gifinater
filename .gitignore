@@ -1,1 +1,7 @@
 node_modules
+gifinator-darwin-x64/
+gifinator-linux-ia32/
+gifinator-linux-x64/
+gifinator-mas-x64/
+gifinator-win32-ia32/
+gifinator-win32-x64/
