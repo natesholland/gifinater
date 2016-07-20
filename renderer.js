@@ -1,12 +1,27 @@
 // This file is required by the index.html file and will
 // be executed in the renderer process for that window.
 // All of the Node.js APIs are available in this process.
-
 const jquery = require('jquery')
 const {clipboard} = require('electron');
 let Handlebars = require('handlebars');
-
 window.jquery = jquery;
+
+var remote = require('electron').remote
+
+var arguments = remote.getGlobal('sharedObject').prop1;
+
+function setUpFromArgs(arguments){
+  if (arguments.length > 0) {
+    // remove the first two automatic arguments
+    arguments.shift()
+    arguments.shift()
+    search_string = arguments.join(' ')
+    document.getElementById('search-box').value=search_string
+    doSearch(search_string)
+  }
+}
+
+setUpFromArgs(arguments)
 
 function searchApi (search_string) {
   search_string = search_string.split(" ").join("+");
@@ -18,8 +33,14 @@ function searchApi (search_string) {
 
 window.searchApi = searchApi;
 
-function alertTest() {
+function updateSearch() {
   var search_string = document.getElementById('search-box').value;
+  doSearch(search_string)
+}
+
+window.updateSearch = updateSearch;
+
+function doSearch(search_string) {
   searchApi(search_string).done(function(result) {
     var num_results = Math.min(10, result.data.length)
     document.getElementById('result-area').innerHTML = ""
@@ -33,15 +54,15 @@ function alertTest() {
   });
 }
 
-window.alertTest = alertTest;
+window.doSearch = doSearch;
 
-function alertTestKeyCheck(e) {
+function updateSearchKeyCheck(e) {
   if (e.keyCode == 13) {
-    alertTest()
+    updateSearch()
   }
 }
 
-window.alertTestKeyCheck = alertTestKeyCheck;
+window.updateSearchKeyCheck = updateSearchKeyCheck;
 
 function randomize() {
   randomGif().done(function(result) {
